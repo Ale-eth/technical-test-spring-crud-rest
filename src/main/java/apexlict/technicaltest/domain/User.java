@@ -35,7 +35,6 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
 
-    // Constructor parametrizado
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;

@@ -12,16 +12,20 @@ import java.util.Optional;
 public class RoleService {
 
     @Autowired
-    private RoleRepository roleRepository; // Repositorio para acceso a datos
+    private RoleRepository roleRepository;
 
     // CREATE
     public Role createRole(Role role) {
-        return roleRepository.save(role); // Guarda el rol en la base de datos
+        return roleRepository.save(role);
     }
 
     // READ
     public Optional<Role> getRoleByID(Long id) {
-        return roleRepository.findById(id); // Retorna un rol por su ID
+        return roleRepository.findById(id);
+    }
+
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 
     // UPDATE
@@ -38,11 +42,6 @@ public class RoleService {
 
     // DELETE
     public void deleteRoleById(Long id) {
-        roleRepository.deleteById(id); // Elimina el rol por su ID
-    }
-
-    // Optional: Puedes agregar métodos adicionales como obtener todos los roles
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll(); // Retorna una lista de todos los roles
+        roleRepository.deleteById(id);
     }
 }

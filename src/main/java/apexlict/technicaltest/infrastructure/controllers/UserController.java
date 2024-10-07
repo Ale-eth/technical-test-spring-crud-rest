@@ -45,8 +45,8 @@ public class UserController {
     // CREATE
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        User createdUser = userService.createUser(user); // Llama al servicio para crear el usuario
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED); // Devuelve el usuario creado con el estado 201
+        User createdUser = userService.createUser(user);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
     // UPDATE

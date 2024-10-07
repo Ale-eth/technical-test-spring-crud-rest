@@ -32,11 +32,8 @@ public class RoleService {
     public Role updateRoleByID(Long id, String newRoleName) {
         Role existingRole = roleRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Role not found"));
+                existingRole.setName(newRoleName);
 
-        // Actualizar el nombre del rol
-        existingRole.setName(newRoleName);
-
-        // Guardar el rol actualizado
         return roleRepository.save(existingRole);
     }
 

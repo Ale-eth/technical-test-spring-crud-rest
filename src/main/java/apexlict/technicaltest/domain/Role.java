@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -32,7 +30,6 @@ public class Role {
     private Set<User> usuarios = new HashSet<>();
 
 
-    // Constructor parametrizado
     public Role(String name) {
         this.name = name;
     }

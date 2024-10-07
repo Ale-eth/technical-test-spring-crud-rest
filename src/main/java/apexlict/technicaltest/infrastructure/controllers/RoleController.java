@@ -22,24 +22,23 @@ public class RoleController {
     @GetMapping("/{roleID}")
     public ResponseEntity<Role> getRoleByID(@PathVariable Long roleID) {
         return roleService.getRoleByID(roleID)
-                .map(role -> new ResponseEntity<>(role, HttpStatus.OK)) // Devolver el rol recuperado
+                .map(role -> new ResponseEntity<>(role, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // CREATE
     @PostMapping
     public ResponseEntity<Role> createRole(@RequestBody Role role) {
-        Role createdRole = roleService.createRole(role); // Llama al servicio para crear el rol
-        return new ResponseEntity<>(createdRole, HttpStatus.CREATED); // Devuelve el rol creado con el estado 201
+        Role createdRole = roleService.createRole(role);
+        return new ResponseEntity<>(createdRole, HttpStatus.CREATED);
     }
 
     // UPDATE
     @PutMapping("/{roleID}")
     public ResponseEntity<Role> updateRoleByID(@PathVariable Long roleID, @RequestBody Role roleDetails) {
-        // Llamar al servicio para actualizar el rol
         Role updatedRole = roleService.updateRoleByID(roleID, roleDetails.getName());
 
-        return ResponseEntity.ok(updatedRole); // 200 OK con el rol actualizado
+        return ResponseEntity.ok(updatedRole);
     }
 
     // DELETE
@@ -47,9 +46,9 @@ public class RoleController {
     public ResponseEntity<Void> deleteRoleByID(@PathVariable Long roleID) {
         if (roleService.getRoleByID(roleID).isPresent()) {
             roleService.deleteRoleById(roleID);
-            return ResponseEntity.noContent().build(); // 204 No Content
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build(); // 404 Not Found
+            return ResponseEntity.notFound().build();
         }
     }
 }

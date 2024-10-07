@@ -1,6 +1,5 @@
 package apexlict.technicaltest.infrastructure.controllers;
 
-
 import apexlict.technicaltest.application.services.UserService;
 import apexlict.technicaltest.domain.Role;
 import apexlict.technicaltest.domain.User;
@@ -8,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 
@@ -40,7 +38,7 @@ public class UserController {
     @GetMapping("/{userID}/roles")
     public ResponseEntity<Set<Role>> getUserRolesByID(@PathVariable Long userID) {
         return userService.getUserRolesByID(userID)
-                .map(roles -> new ResponseEntity<>(roles, HttpStatus.OK)) // Devolver los roles del usuario
+                .map(roles -> new ResponseEntity<>(roles, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -54,10 +52,9 @@ public class UserController {
     // UPDATE
     @PutMapping("/{userID}")
     public ResponseEntity<User> updateUserByID( @PathVariable Long userID,  @RequestBody User userDetails) {
-        // Llamar al servicio para actualizar el usuario
         User updatedUser = userService.updateUserByID(userID, userDetails.getName(), userDetails.getEmail(), userDetails.getPassword());
 
-        return ResponseEntity.ok(updatedUser); // 200 OK con el usuario actualizado
+        return ResponseEntity.ok(updatedUser);
     }
 
     // DELETE
@@ -65,9 +62,9 @@ public class UserController {
     public ResponseEntity<Void> deleteUserByID(@PathVariable Long userID) {
         if (userService.getUserByID(userID).isPresent()) {
             userService.deleteUserById(userID);
-            return ResponseEntity.noContent().build(); // 204 No Content
+            return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build(); // 404 Not Found
+            return ResponseEntity.notFound().build();
         }
     }
 }
